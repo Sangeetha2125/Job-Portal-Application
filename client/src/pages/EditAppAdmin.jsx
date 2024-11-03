@@ -5,9 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getAppData } from '../actions/AdminActions'
 import { Link } from 'react-router-dom'
 import { Loader } from '../components/Loader'
-import {toast} from 'react-toastify'
-import {updateApplication} from '../actions/AdminActions'
-import { Sidebar } from '../components/Sidebar'
+import { updateApplication } from '../actions/AdminActions'
 import { RxCross1 } from 'react-icons/rx'
 
 
@@ -18,7 +16,7 @@ export const EditAppAdmin = () => {
 
     const { loading, applicationData } = useSelector(state => state.admin);
 
-    const [status, setStatus] = useState("not") ;
+    const [status, setStatus] = useState("not");
     const [sideTog, setSideTog] = useState(false)
 
     useEffect(() => {
@@ -26,10 +24,10 @@ export const EditAppAdmin = () => {
     }, [])
 
     const updateStatusHandler = () => {
-            const data = {
-                status
-            }
-            dispatch(updateApplication(id,data))
+        const data = {
+            status
+        }
+        dispatch(updateApplication(id, data))
     }
 
     const toUpperFirst = (str = "") => {
@@ -85,14 +83,6 @@ export const EditAppAdmin = () => {
                         :
 
                         <div>
-                            <div className="pt-1 fixed left-0 z-20 pl-0">
-                <div onClick={(() => setSideTog(!sideTog))} className='cursor-pointer blueCol px-3 py-2' size={44} >
-                  {!sideTog ? "Menu" : <RxCross1 />}
-                </div>
-              </div>
-
-              <Sidebar sideTog={sideTog} />
-
                             <div className='py- md:pt-3 pt-12 text-2xl md:text-4xl'>Application #{id}</div>
 
                             <div className='pt-4 pb-3'>
@@ -134,14 +124,14 @@ export const EditAppAdmin = () => {
 
                                 <div className="flex gap-4">
                                     <div>
-                                        <select onChange={(e)=>setStatus(e.target.value)} id="large" class="block w-full px-6 py-3 text-base  border bg-gray-900 border-gray-600 placeholder-gray-400 text-white ">
+                                        <select onChange={(e) => setStatus(e.target.value)} id="large" class="block w-full px-6 py-3 text-base  border bg-gray-900 border-gray-600 placeholder-gray-400 text-white ">
                                             <option value="not" selected>Select Status</option>
                                             <option value="accepted">Accepted</option>
                                             <option value="rejected">Rejected</option>
                                         </select>
                                     </div>
 
-                                    <button onClick={()=>updateStatusHandler()} className="blueCol py-2 px-6">
+                                    <button onClick={() => updateStatusHandler()} className="blueCol py-2 px-6">
                                         Update Status
                                     </button>
                                 </div>

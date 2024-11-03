@@ -1,6 +1,5 @@
 import React from 'react';
 import { MdOutlineBusinessCenter } from 'react-icons/md';
-import { Link } from 'react-router-dom';
 import { FaFacebook, FaTwitterSquare, FaYoutube } from 'react-icons/fa';
 import { AiFillInstagram, AiFillMail } from 'react-icons/ai';
 

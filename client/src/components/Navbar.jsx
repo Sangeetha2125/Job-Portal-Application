@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Avatar } from '@mantine/core';
 import { FaBars } from 'react-icons/fa';
 import { RxCross1 } from 'react-icons/rx';
-import { MdOutlineBusinessCenter, MdOutlineDashboard } from 'react-icons/md';
+import { MdOutlineBusinessCenter } from 'react-icons/md';
 import { Menu } from '@mantine/core';
 import { FaUserCircle, FaSave } from 'react-icons/fa';
 import { MdDoneAll } from 'react-icons/md';
@@ -40,8 +40,12 @@ export const Navbar = () => {
                             <MdOutlineBusinessCenter size={19} /> JOB PORTAL
                         </Link>
 
-                        <Link to="/" className='cool-link'>Home</Link>
-                        <Link to="/jobs" className='cool-link'>Jobs</Link>
+                        {me.role === "admin" && <Link to="/admin/postJob" className='cool-link'>Post Job</Link>}
+                        {me.role === "admin" && <Link to="/admin/allUsers">All Users</Link>}
+                        {me.role !== "admin" && <Link to="/" className='cool-link'>Home</Link>}
+                        {me.role !== "admin" && <Link to="/jobs" className='cool-link'>Jobs</Link>}
+                        {me.role === "admin" && <Link to="/admin/allJobs" className='cool-link'>All Jobs</Link>}
+                        {me.role === "admin" && <Link to="/admin/allApplications">All Applications</Link>}
 
                         {isLogin ? (
                             <Menu shadow="md" width={200}>
@@ -51,9 +55,8 @@ export const Navbar = () => {
 
                                 <Menu.Dropdown>
                                     <Link to="/profile"><Menu.Item icon={<FaUserCircle size={14} />}>My Profile</Menu.Item></Link>
-                                    {me.role === "admin" && <Link to="/admin/dashboard"><Menu.Item icon={<MdOutlineDashboard size={14} />}>Dashboard</Menu.Item></Link>}
-                                    <Link to="/applied"><Menu.Item icon={<MdDoneAll size={14} />}>Applied Jobs</Menu.Item></Link>
-                                    <Link to="/saved"><Menu.Item icon={<FaSave size={14} />}>Saved Jobs</Menu.Item></Link>
+                                    {me.role !== "admin" && <Link to="/applied"><Menu.Item icon={<MdDoneAll size={14} />}>Applied Jobs</Menu.Item></Link>}
+                                    {me.role !== "admin" && <Link to="/saved"><Menu.Item icon={<FaSave size={14} />}>Saved Jobs</Menu.Item></Link>}
                                     <Menu.Divider />
                                     <Menu.Item onClick={LogOut} color="red" icon={<RiLogoutBoxFill size={14} />}>Logout</Menu.Item>
                                 </Menu.Dropdown>
@@ -81,7 +84,6 @@ export const Navbar = () => {
 
                                     <Menu.Dropdown>
                                         <Link to="/profile"><Menu.Item icon={<FaUserCircle size={14} />}>My Profile</Menu.Item></Link>
-                                        {me.role === "admin" && <Link to="/admin/dashboard"><Menu.Item icon={<MdOutlineDashboard size={14} />}>Dashboard</Menu.Item></Link>}
                                         <Link to="/applied"><Menu.Item icon={<MdDoneAll size={14} />}>Applied Jobs</Menu.Item></Link>
                                         <Link to="/saved"><Menu.Item icon={<FaSave size={14} />}>Saved Jobs</Menu.Item></Link>
                                         <Menu.Divider />

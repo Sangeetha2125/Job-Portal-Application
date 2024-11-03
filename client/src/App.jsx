@@ -29,7 +29,6 @@ import { ViewAllUsersAdmin } from './pages/ViewAllUsersAdmin'
 import { EditAppAdmin } from './pages/EditAppAdmin'
 import { EditUserAdmin } from './pages/EditUserAdmin'
 import { EditJobAdmin } from './pages/EditJobAdmin'
-import { Test } from './pages/Test'
 import NotFound from './pages/NotFound'
 import UnAuthorized from './pages/UnAuthorized'
 import ScrollToTopWhenRouteChanges from './components/ScrollToTopOnRouteChange.jsx'
@@ -74,17 +73,20 @@ function App() {
         <Route path='/register' element={<Register />} />
         <Route path='/details/:id' element={<JobDetails />} />
 
+
         <Route element={<ProtectedRoute isAllowed={['applicant', 'admin'].includes(localStorage.getItem('role'))} />}>
           <Route path='/profile' element={<MyProfile />} />
-          <Route path='/applied' element={<AppliedJobs />} />
-          <Route path='/saved' element={<SavedJobs />} />
           <Route path='/changePassword' element={<ChangePassword />} />
           <Route path='/editProfile' element={<EditProfile />} />
           <Route path='/deleteAccount' element={<DeleteAccount />} />
           <Route path='/JobsLayout' element={<JobsLayout />} />
           <Route path='/Application/:id' element={<Application />} />
           <Route path='/Application/Details/:id' element={<ApplicationDetails />} />
+        </Route>
 
+        <Route element={<ProtectedRoute isAllowed={['applicant'].includes(localStorage.getItem('role'))} />}>
+          <Route path='/applied' element={<AppliedJobs />} />
+          <Route path='/saved' element={<SavedJobs />} />
         </Route>
 
         <Route element={<ProtectedRoute isAllowed={"admin" === localStorage.getItem('role')} />}>
@@ -98,15 +100,8 @@ function App() {
           <Route path='/admin/job/details/:id' element={<EditJobAdmin />} />
         </Route>
 
-
-        {/* test */}
-        <Route path='/test' element={<Test />} />
-
-
         <Route path='*' element={<NotFound />} />
         <Route path='/unauthorized' element={<UnAuthorized />} />
-
-
 
       </Routes>
       <ToastContainer
