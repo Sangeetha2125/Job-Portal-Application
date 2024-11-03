@@ -4,8 +4,6 @@ import { Home } from './pages/Home'
 import { Navbar } from './components/Navbar'
 import { Footer } from './components/Footer'
 import { Jobs } from './pages/Jobs'
-import { Contact } from './pages/Contact'
-import { About } from './pages/About'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
 import { MyProfile } from './pages/MyProfile'
@@ -41,15 +39,10 @@ import ScrollToTopWhenRouteChanges from './components/ScrollToTopOnRouteChange.j
 function App() {
 
   const dispatch = useDispatch()
-
-
   const { isLogin } = useSelector(state => state.user)
 
-
   useEffect(() => {
-
     dispatch(me());
-
   }, [dispatch, isLogin]);
 
 
@@ -66,21 +59,17 @@ function App() {
     if (!isAllowed) {
       return <Navigate to={redirectPath} replace />;
     }
-
     return children ? children : <Outlet />
   }
 
-
   return (
-    <>
-       <ScrollToTopWhenRouteChanges/>
+    <div className='flex flex-col min-h-screen bg-gray-100'>
+      <ScrollToTopWhenRouteChanges />
       <Navbar />
       <Routes>
-        
+
         <Route exact path='/' element={<Home />} />
         <Route path='/jobs' element={<Jobs />} />
-        <Route path='/contact' element={<Contact />} />
-        <Route path='/about' element={<About />} />
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
         <Route path='/details/:id' element={<JobDetails />} />
@@ -120,8 +109,6 @@ function App() {
 
 
       </Routes>
-
-
       <ToastContainer
         position="top-right"
         autoClose={3000}
@@ -132,17 +119,11 @@ function App() {
         pauseOnFocusLoss
         draggable
         pauseOnHover
-        theme="dark"
+        theme="light"
         className="mt-14 font-bold  "
-
       />
-
       <Footer />
-
-
-
-
-    </>
+    </div>
   )
 }
 
