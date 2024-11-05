@@ -20,7 +20,6 @@ import { DeleteAccount } from './pages/DeleteAccount'
 import { Dashboard } from './pages/Dashboard'
 import { CreateJob } from './pages/CreateJob'
 import { getAllJobs } from './actions/JobActions'
-import { JobsLayout } from './pages/JobsLayout'
 import { Application } from './pages/Application'
 import { ApplicationDetails } from './pages/ApplicationDetails'
 import { ViewAllJobAdmin } from './pages/VIewAllJobAdmin'
@@ -79,7 +78,6 @@ function App() {
           <Route path='/changePassword' element={<ChangePassword />} />
           <Route path='/editProfile' element={<EditProfile />} />
           <Route path='/deleteAccount' element={<DeleteAccount />} />
-          <Route path='/JobsLayout' element={<JobsLayout />} />
           <Route path='/Application/:id' element={<Application />} />
           <Route path='/Application/Details/:id' element={<ApplicationDetails />} />
         </Route>
